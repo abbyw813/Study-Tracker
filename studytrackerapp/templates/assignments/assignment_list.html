@@ -1,0 +1,20 @@
+<!-- assignment_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment List</title>
+</head>
+<body>
+    <h1>Assignment List</h1>
+    <ul>
+        {% for assignment in assignments %}
+            <li>
+                <strong>{{ assignment.title }}</strong> - Due: {{ assignment.due_date }}
+            </li>
+        {% empty %}
+            <li>No assignments available</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -16,7 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from studytrackerapp import views
+from django.urls import path
+from studytrackerapp.views import homepage, search_results, assignment_list, project_list, test_list, create_assignment, create_project, create_test
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', homepage, name='homepage'),
+    path('search/', search_results, name='search_results'),
+    path('assignments/', assignment_list, name='assignment_list'),
+    path('projects/', project_list, name='project_list'),
+    path('tests/', test_list, name='test_list'),
+    path('assignments/create/', create_assignment, name='create_assignment'),
+    path('projects/create/', create_project, name='create_project'),
+    path('tests/create/', create_test, name='create_test'),
+
 ]
