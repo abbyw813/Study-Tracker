@@ -17,8 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from studytrackerapp import views
-from django.urls import path
 from studytrackerapp.views import homepage, search_results, assignment_list, project_list, test_list, create_assignment, create_project, create_test
+from studytrackerapp.views import user_login, user_logout
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homepage, name='homepage'),
@@ -29,5 +30,7 @@ urlpatterns = [
     path('assignments/create/', create_assignment, name='create_assignment'),
     path('projects/create/', create_project, name='create_project'),
     path('tests/create/', create_test, name='create_test'),
+    path('login/', user_login, name='login'),
+    path('logout/', user_logout, name='logout'),
 
 ]

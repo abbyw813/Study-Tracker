@@ -1,17 +1,19 @@
 from django.shortcuts import render, redirect
 from studytrackerapp.models import Assignment, Project, Test
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from studytrackerapp.models import UserProfile
 
-# Create your views here.
 def homepage(request):
     return render(request, 'home/homepage.html')
 def search_results(request):
     query = request.GET.get('query')
-    # Add your search logic here
     return render(request, 'home/search_results.html', {'query': query})
 
 def assignment_list(request):
     assignments = Assignment.objects.all()
-    return render(request, 'assignment_list.html', {'assignments': assignments})
+    print(assignments)  
+    return render(request, 'assignments/assignment_list.html', {'assignments': assignments})
 
 def project_list(request):
     projects = Project.objects.all()
@@ -50,3 +52,23 @@ def create_test(request):
 
 
 
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('profile')  
+        else:
+            return render(request, 'login.html', {'error': 'Invalid credentials'})
+    return render(request, 'login.html')
+
+def user_logout(request):
+    logout(request)
+    return redirect('login')  
+
+
+def profile_view(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    return render(request, 'profile.html', {'user_profile': user_profile})
