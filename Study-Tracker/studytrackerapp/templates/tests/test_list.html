@@ -1,0 +1,20 @@
+<!-- test_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test List</title>
+</head>
+<body>
+    <h1>Test List</h1>
+    <ul>
+        {% for test in tests %}
+            <li>
+                <strong>{{ test.subject }}</strong> - {{ test.date }}
+            </li>
+        {% empty %}
+            <li>No tests available</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
