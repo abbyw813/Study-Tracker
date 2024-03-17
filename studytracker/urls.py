@@ -19,8 +19,16 @@ from django.urls import path
 from studytrackerapp import views
 from studytrackerapp.views import homepage, search_results, assignment_list, project_list, test_list, create_assignment, create_project, create_test
 from studytrackerapp.views import user_login, user_logout
+from studytrackerapp.views import profile_view
+from studytrackerapp.views import user_registration
+from django.shortcuts import redirect
+from studytrackerapp.views import study_tips_view
+
+def redirect_to_login(request):
+    return redirect('login')
 
 urlpatterns = [
+    path('', redirect_to_login),
     path('admin/', admin.site.urls),
     path('', homepage, name='homepage'),
     path('search/', search_results, name='search_results'),
@@ -32,5 +40,7 @@ urlpatterns = [
     path('tests/create/', create_test, name='create_test'),
     path('login/', user_login, name='login'),
     path('logout/', user_logout, name='logout'),
-
+    path('profile/', profile_view, name='profile'),
+    path('register/', user_registration, name='register'),
+    path('study-tips/', study_tips_view, name='study_tips'),
 ]

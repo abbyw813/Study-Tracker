@@ -2,7 +2,11 @@ from django.shortcuts import render, redirect
 from studytrackerapp.models import Assignment, Project, Test
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from studytrackerapp.models import UserProfile
+from studytrackerapp.forms import UserRegistrationForm
+from studytrackerapp.forms import BioUpdateForm
 
 def homepage(request):
     return render(request, 'home/homepage.html')
@@ -68,7 +72,38 @@ def user_logout(request):
     logout(request)
     return redirect('login')  
 
-
+@login_required
 def profile_view(request):
-    user_profile = UserProfile.objects.get(user=request.user)
-    return render(request, 'profile.html', {'user_profile': user_profile})
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        user_profile = UserProfile.objects.create(user=request.user)
+
+    if request.method == 'POST':
+        form = BioUpdateForm(request.POST, instance=user_profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = BioUpdateForm(instance=user_profile)
+
+    return render(request, 'profile.html', {'user_profile': user_profile, 'form': form})
+
+
+def user_registration(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+            login(request, user)  
+            return redirect('profile')  
+
+    else:
+        form = UserRegistrationForm()
+
+    return render(request, 'registration.html', {'form': form})
+
+def study_tips_view(request):
+    return render(request, 'study_tips.html')
