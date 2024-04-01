@@ -1,7 +1,7 @@
 /* styles.css */
 
 body {
-    background-color: #f0f0f0; /* Change the background color to a light gray */
+    background-color: #f0f0f0; 
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -19,7 +19,7 @@ main {
     margin: 0 auto;
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Arrange study tips in a grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
     gap: 20px;
 }
 

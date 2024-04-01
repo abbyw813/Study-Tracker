@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Django App</title>
+    <title>Study Tracker</title>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'study_tips' %}">Study Tips</a></li>
-            <!-- Add more links as needed -->
-        </ul>
-    </nav>
-    
-    {% block content %}{% endblock %}
+    <ul>
+        <li><a href="{% url 'assignment_list' %}">Assignments</a></li>
+        <li><a href="{% url 'create_assignment' %}">Create Assignment</a></li>
+        <li><a href="{% url 'project_list' %}">Projects</a></li>
+        <li><a href="{% url 'create_project' %}">Create Project</a></li>
+        <li><a href="{% url 'test_list' %}">Tests</a></li>
+        <li><a href="{% url 'create_test' %}">Create Test</a></li>
+        <li><a href="{% url 'profile' %}">Profile</a></li>
+        <li><a href="{% url 'study_tips' %}">Study Tips</a></li>
+    </ul>
+    {% block content %}
+    {% endblock %}
 </body>
 </html>

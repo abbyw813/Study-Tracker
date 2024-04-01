@@ -17,8 +17,8 @@ class Project(models.Model):
         app_label = 'studytrackerapp'  
 
 class Test(models.Model):
-    title = models.CharField(max_length=200)
-    due_date = models.DateField()
+    subject = models.CharField(max_length=50)
+    date = models.DateField()
     completed = models.BooleanField(default=False)
 
     class Meta:

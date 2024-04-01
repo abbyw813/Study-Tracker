@@ -21,11 +21,11 @@ def assignment_list(request):
 
 def project_list(request):
     projects = Project.objects.all()
-    return render(request, 'project_list.html', {'projects': projects})
+    return render(request, 'projects/project_list.html', {'projects': projects})
 
 def test_list(request):
     tests = Test.objects.all()
-    return render(request, 'test_list.html', {'tests': tests})
+    return render(request, 'tests/test_list.html', {'tests': tests})
 
 def create_assignment(request):
     if request.method == 'POST':
@@ -34,7 +34,7 @@ def create_assignment(request):
         assignment = Assignment(title=title, due_date=due_date)
         assignment.save()
         return redirect('assignment_list')
-    return render(request, 'create_assignment.html')
+    return render(request, 'assignments/create_assignment.html')
 
 def create_project(request):
     if request.method == 'POST':
@@ -43,16 +43,15 @@ def create_project(request):
         project = Project(name=name, description=description)
         project.save()
         return redirect('project_list')
-    return render(request, 'create_project.html')
+    return render(request, 'projects/create_project.html')
 
 def create_test(request):
     if request.method == 'POST':
         subject = request.POST.get('subject')
         date = request.POST.get('date')
-        test = Test(subject=subject, date=date)
-        test.save()
+        test = Test.objects.create(subject=subject, date=date)
         return redirect('test_list')
-    return render(request, 'create_test.html')
+    return render(request, 'tests/create_test.html')
 
 
 
