@@ -1,19 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Project List</title>
-</head>
-<body>
-    <h1>Project List</h1>
-    <ul>
-        {% for project in projects %}
-            <li>{{ project.name }} - {{ project.description }}</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+<h1>Project List</h1>
+<ul>
+    {% for project in projects %}
+        <li>
+            {{ project.subject }} - {{ project.date }}
+            <form method="post" action="{% url 'delete_project' project.id %}">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+    {% empty %}
+        <li>No projects available</li>
+    {% endfor %}
+</ul>
 {% endblock %}

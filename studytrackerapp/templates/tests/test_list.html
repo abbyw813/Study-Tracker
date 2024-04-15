@@ -1,23 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Test List</title>
-</head>
-<body>
-    <h1>Test List</h1>
-    <ul>
-        {% for test in tests %}
-            <li>
-                <strong>{{ test.subject }}</strong> - {{ test.date }}
-            </li>
-        {% empty %}
-            <li>No tests available</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+<h1>Test List</h1>
+<ul>
+    {% for test in tests %}
+        <li>
+            <strong>{{ test.subject }}</strong> - {{ test.date }}
+            <!-- Add a delete button for each test -->
+            <form method="post" action="{% url 'delete_test' test.id %}">
+                {% csrf_token %}
+                <input type="submit" value="Delete">
+            </form>
+        </li>
+    {% empty %}
+        <li>No tests available</li>
+    {% endfor %}
+</ul>
 {% endblock %}

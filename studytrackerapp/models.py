@@ -9,9 +9,8 @@ class Assignment(models.Model):
         app_label = 'studytrackerapp'  
 
 class Project(models.Model):
-    title = models.CharField(max_length=200)
-    due_date = models.DateField()
-    completed = models.BooleanField(default=False)
+    subject = models.CharField(max_length=100)
+    date = models.DateField()
 
     class Meta:
         app_label = 'studytrackerapp'  

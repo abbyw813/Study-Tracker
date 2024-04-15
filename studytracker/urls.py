@@ -23,6 +23,9 @@ from studytrackerapp.views import profile_view
 from studytrackerapp.views import user_registration
 from django.shortcuts import redirect
 from studytrackerapp.views import study_tips_view
+from studytrackerapp.views import delete_test
+from studytrackerapp.views import delete_project
+from studytrackerapp.views import delete_assignment
 
 def redirect_to_login(request):
     return redirect('login')
@@ -33,11 +36,14 @@ urlpatterns = [
     path('', homepage, name='homepage'),
     path('search/', search_results, name='search_results'),
     path('assignments/', assignment_list, name='assignment_list'),
+    path('assignments/delete/<int:assignment_id>/', delete_assignment, name='delete_assignment'),
     path('projects/', project_list, name='project_list'),
     path('tests/', test_list, name='test_list'),
     path('assignments/create/', create_assignment, name='create_assignment'),
     path('projects/create/', create_project, name='create_project'),
+    path('projects/delete/<int:project_id>/', delete_project, name='delete_project'),
     path('tests/create/', create_test, name='create_test'),
+    path('tests/delete/<int:test_id>/', delete_test, name='delete_test'),
     path('login/', user_login, name='login'),
     path('logout/', user_logout, name='logout'),
     path('profile/', profile_view, name='profile'),

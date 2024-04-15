@@ -1,14 +1,14 @@
-{% extends 'base.html' %}
-{% block content %}
-<h1>Create a New Test</h1>
-<form method="post" action="{% url 'create_test' %}">
-    {% csrf_token %}
-    <label for="subject">Subject:</label>
-    <input type="text" id="subject" name="subject">
-    <br>
-    <label for="date">Date:</label>
-    <input type="date" id="date" name="date">
-    <br>
-    <input type="submit" value="Create Test">
-</form>
-{% endblock %}
+{% extends 'base.html' %} 
+{% block content %} 
+<h1>Create a New Test</h1> 
+<form method="post" action="{% url 'create_test' %}"> 
+  {% csrf_token %} 
+  <label for="subject">Subject:</label>
+   <input type="text" id="subject" name="subject"> 
+   <br> <label for="date">Date:</label> 
+   <input type="date" id="date" name="date">
+    <br> <input type="submit" value="Create Test"> 
+  </form> 
+  {% endblock %}
+
+
