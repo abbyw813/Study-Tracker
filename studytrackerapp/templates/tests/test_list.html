@@ -6,7 +6,6 @@
     {% for test in tests %}
         <li>
             <strong>{{ test.subject }}</strong> - {{ test.date }}
-            <!-- Add a delete button for each test -->
             <form method="post" action="{% url 'delete_test' test.id %}">
                 {% csrf_token %}
                 <input type="submit" value="Delete">

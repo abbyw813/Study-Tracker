@@ -1,23 +1,21 @@
-/* login_styles.css */
-
-/* Add styles to the body */
+/*body*/
 body {
     font-family: Arial, sans-serif;
 }
 
-/* Add styles to the login form */
+/* login form */
 form {
     margin: 0 auto;
     max-width: 300px;
 }
 
-/* Add styles to the labels */
+/*labels*/
 label {
     display: block;
     margin-bottom: 5px;
 }
 
-/* Add styles to the input fields */
+/* input fields */
 input[type="text"],
 input[type="password"] {
     width: 100%;
@@ -25,9 +23,9 @@ input[type="password"] {
     margin-bottom: 10px;
 }
 
-/* Add styles to the button */
+/* button */
 button {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50; 
     color: white;
     padding: 10px 20px;
     border: none;
@@ -35,7 +33,7 @@ button {
     width: 100%;
 }
 
-/* Add styles to the link */
+/* link */
 a {
     color: #4CAF50;
 }
