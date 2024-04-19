@@ -1,35 +1,98 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>User Profile</title>
-</head>
-<body>
-    <h1>Welcome, {{ user_profile.user.username }}</h1>
-    <p>{{ user_profile.bio }}</p>
-    <button onclick="toggleBioForm()">Edit Bio</button>
+<div class="container">
+    <div class="profile-header">
+        <div class="profile-details">
+            <h1>Welcome {{ user_profile.user.username }} !</h1>
+            <p>{{ user_profile.bio }}</p>
+            <button onclick="toggleBioForm()" class="edit-bio-button">Edit Bio</button>
+            <a href="{% url 'logout' %}" class="logout-link">Logout</a>
+        </div>
+    </div>
+
     <form id="bioForm" method="post" style="display: none;">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Update Bio</button>
+        <button type="submit" class="edit-bio-button">Update Bio</button>
     </form>
-    {% if user_profile.profile_picture %}
-        <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture">
-    {% endif %}
-    <a href="{% url 'logout' %}">Logout</a>
 
-    <script>
-        function toggleBioForm() {
-            var form = document.getElementById('bioForm');
-            if (form.style.display === 'none') {
-                form.style.display = 'block';
-            } else {
-                form.style.display = 'none';
+    <div class="current-info">
+        <h2>Current Time:</h2>
+        <p id="current-time"></p>
+    </div>
+
+
+    <div class="timer-section">
+        <h2>Timer:</h2>
+        <p id="timer">00:00:00</p>
+        <button onclick="startTimer()" class="timer-button start-button">Start</button>
+        <button onclick="stopTimer()" class="timer-button stop-button">Stop</button>
+        <button onclick="resetTimer()" class="timer-button reset-button">Reset</button>
+    </div>
+</div>
+
+<script>
+    function toggleBioForm() {
+        var form = document.getElementById('bioForm');
+        if (form.style.display === 'none') {
+            form.style.display = 'block';
+        } else {
+            form.style.display = 'none';
+        }
+    }
+
+
+    fetch('https://worldtimeapi.org/api/timezone/America/New_York')
+        .then(response => response.json())
+        .then(data => {
+            const currentTime = new Date(data.utc_datetime);
+            document.getElementById('current-time').innerText = 'Current Time: ' + currentTime.toLocaleString();
+        })
+        .catch(error => {
+            console.error('Error fetching current time:', error);
+            document.getElementById('current-time').innerText = 'Error: Unable to fetch current time';
+        });
+
+
+    let timerInterval;
+    let seconds = 0;
+    let minutes = 0;
+    let hours = 0;
+
+    function startTimer() {
+        timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    function stopTimer() {
+        clearInterval(timerInterval);
+    }
+
+    function resetTimer() {
+        clearInterval(timerInterval);
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        document.getElementById('timer').innerText = '00:00:00';
+    }
+
+    function updateTimer() {
+        seconds++;
+        if (seconds === 60) {
+            seconds = 0;
+            minutes++;
+            if (minutes === 60) {
+                minutes = 0;
+                hours++;
             }
         }
-    </script>
-</body>
-</html>
+
+        const formattedTime = pad(hours) + ':' + pad(minutes) + ':' + pad(seconds);
+        document.getElementById('timer').innerText = formattedTime;
+    }
+
+    function pad(value) {
+        return value < 10 ? '0' + value : value;
+    }
+</script>
 {% endblock %}

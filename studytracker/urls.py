@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from studytrackerapp import views
-from studytrackerapp.views import homepage, search_results, assignment_list, project_list, test_list, create_assignment, create_project, create_test
+from studytrackerapp.views import assignment_list, project_list, test_list, create_assignment, create_project, create_test
 from studytrackerapp.views import user_login, user_logout
 from studytrackerapp.views import profile_view
 from studytrackerapp.views import user_registration
@@ -33,8 +33,6 @@ def redirect_to_login(request):
 urlpatterns = [
     path('', redirect_to_login),
     path('admin/', admin.site.urls),
-    path('', homepage, name='homepage'),
-    path('search/', search_results, name='search_results'),
     path('assignments/', assignment_list, name='assignment_list'),
     path('assignments/delete/<int:assignment_id>/', delete_assignment, name='delete_assignment'),
     path('projects/', project_list, name='project_list'),

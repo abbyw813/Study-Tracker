@@ -8,7 +8,7 @@
             <strong>{{ test.subject }}</strong> - {{ test.date }}
             <form method="post" action="{% url 'delete_test' test.id %}">
                 {% csrf_token %}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Delete" class="delete-button">
             </form>
         </li>
     {% empty %}

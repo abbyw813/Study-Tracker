@@ -9,11 +9,6 @@ from studytrackerapp.models import UserProfile
 from studytrackerapp.forms import UserRegistrationForm
 from studytrackerapp.forms import BioUpdateForm
 
-def homepage(request):
-    return render(request, 'home/homepage.html')
-def search_results(request):
-    query = request.GET.get('query')
-    return render(request, 'home/search_results.html', {'query': query})
 
 def assignment_list(request):
     assignments = Assignment.objects.all()

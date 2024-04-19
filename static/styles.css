@@ -1,74 +1,104 @@
-/*base.html*/
+/* Base Styles */
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     font-size: 16px;
     line-height: 1.5;
-    background-color: #c5c4cb;
-    color: #000000;
-}
-
-a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* Layout */
-.container {
-    width: 80%; 
-    margin: 0 auto;
+    background-color: #f4f4f9;
+    color: #333;
     padding: 20px;
 }
 
-/* Header */
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
+.container {
+    width: 50%;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    position: relative; 
+    z-index: 100; 
+    margin: 0 auto; 
 }
 
-/* Navigation Menu */
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.container:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-/* Main Content */
-main {
-    padding: 20px 0;
-}
-
-/* Footer */
-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-}
-
-/* Forms */
-form {
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
+.profile-details h1 {
+    margin: 0;
+    color: #333;
+    font-size: 24px;
 }
 
-input[type="text"],
-input[type="date"],
-input[type="submit"] {
+.profile-details p {
+    color: #666;
+    font-size: 16px;
+}
+
+a, button {
+    font-size: 16px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+a.logout-link,
+button {
+    font-size: 16px;
+    transition: background-color 0.2s, color 0.2s;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+a.logout-link {
+    background-color: #007bff;
+}
+
+a.logout-link:hover,
+button:hover {
+    background-color: #0056b3; 
+    color: #eeeeee;
+}
+
+
+button.edit-bio-button {
+    font-size: 16px;
+    transition: background-color 0.2s, color 0.2s;
+    background-color: #007bff; 
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+button.edit-bio-button:hover {
+    background-color: #0056b3; 
+    color: #eeeeee;
+}
+
+form {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; 
+}
+
+input[type="text"], input[type="date"], input[type="submit"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -76,20 +106,11 @@ input[type="submit"] {
     border-radius: 5px;
 }
 
-input[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-}
 
-input[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
-/* Study Tips */
 .study-tips-container {
-    width: 80%; 
-    margin: 0 auto; 
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .study-tip {
@@ -102,10 +123,101 @@ input[type="submit"]:hover {
 
 .study-tip h2 {
     color: #333;
-    font-size: 18px; 
+    font-size: 18px;
 }
 
 .study-tip p {
-    color: #666; 
-    font-size: 16px; 
+    color: #666;
+    font-size: 16px;
+}
+
+
+ul.nav-menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    width: 100%;
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+}
+
+
+ul.nav-menu li {
+    display: inline-block;
+}
+
+
+ul.nav-menu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+
+ul.nav-menu li a:hover {
+    background-color: #111;
+}
+
+
+.content {
+    margin-bottom: 70px; 
+}
+
+
+.delete-button {
+    position: relative; 
+    z-index: 1; 
+}
+
+
+.create-button {
+    font-size: 16px;
+    transition: background-color 0.2s, color 0.2s;
+    background-color: #007bff; 
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.create-button:hover {
+    background-color: #0056b3; 
+    color: #eeeeee;
+}
+
+.delete-button {
+    font-size: 16px;
+    transition: background-color 0.2s, color 0.2s;
+    background-color: #007bff; 
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.delete-button:hover {
+    background-color: #0056b3; 
+    color: #eeeeee;
+}
+
+
+.timer-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background-color: #008CBA; 
+    color: white; 
+}
+
+.timer-button:hover {
+    background-color: #0056b3; 
 }
